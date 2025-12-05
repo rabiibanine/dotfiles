@@ -6,3 +6,5 @@
 
 # This command unignores directories.
 !/kitty/
+!/fontconfig/
+!/niri/
