@@ -1,0 +1,8 @@
+# This command ignores everything.
+/*
+
+# This command unignores dot files directly in the root of the repo
+!/.gitignore
+
+# This command unignores directories.
+!/kitty/
