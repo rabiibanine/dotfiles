@@ -47,7 +47,7 @@ input {
 
 // To be changed when not using a virtual machine
 output "Virtual-1" {
-    mode "1920x1080@100.000"
+    mode "1920x1080@60.000"
     scale 1
     transform "normal"
 }
