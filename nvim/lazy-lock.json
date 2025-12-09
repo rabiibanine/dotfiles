@@ -1,4 +1,5 @@
 {
+  "alpha-nvim": { "branch": "main", "commit": "3979b01cb05734331c7873049001d3f2bb8477f4" },
   "flexoki-neovim": { "branch": "main", "commit": "c3e2251e813d29d885a7cbbe9808a7af234d845d" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
   "nvim-tree.lua": { "branch": "master", "commit": "59088b96a32ea47caf4976e164dbd88b86447fb7" },
