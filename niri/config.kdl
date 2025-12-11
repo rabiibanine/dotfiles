@@ -1,6 +1,7 @@
 // BEGIN_CUSTOM_USER_CONFIG
 screenshot-path "~/pictures/screenshots/screenshot from %Y-%m-%d %H-%M-%S.png"
 spawn-at-startup "waybar"
+spawn-sh-at-startup "swaybg -i ~/wallpapers/wallpaper-1.png"
 prefer-no-csd
 // END_CUSTOM_USER_CONFIG
 
@@ -53,18 +54,19 @@ output "Virtual-1" {
 }
 
 layout {
-    gaps 8
+    gaps 4
     center-focused-column "never"
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
     }
+
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 2
-        active-color "#FFFFFF"
+        width 1
+        active-color "#AFAFEF"
         inactive-color "#000000"
     }
 
