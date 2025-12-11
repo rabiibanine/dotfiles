@@ -1,7 +1,7 @@
 local keymap = vim.keymap
 
 keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true })
-keymap.set("n", "<C-r>", function()
+keymap.set("n", "<A-r>", function()
   local file = vim.fn.expand("%")
   local file_root = vim.fn.expand("%:r")
   local ft_cmds = {
