@@ -3,12 +3,12 @@ local keymap = vim.keymap
 keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true })
 keymap.set("n", "<A-r>", function()
   local file = vim.fn.expand("%")
-  local file_root = vim.fn.expand("%:r")
+  local file_root = vim.fn.expand("%:p:r")
   local ft_cmds = {
     python = "python3 " .. file,
     javascript = "node " .. file,
     sh = "bash " .. file,
-    c = "gcc " .. file .. " -o " .. file_root .. " && ./" .. file_root,
+    c = "gcc " .. file .. " -g -o " .. file_root .. " && " .. file_root,
   }
 
   local cmd = ft_cmds[vim.bo.filetype]
