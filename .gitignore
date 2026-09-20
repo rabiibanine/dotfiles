@@ -3,6 +3,7 @@
 
 # This command unignores dot files directly in the root of the repo
 !/.gitignore
+!/.zshrc
 
 # This command unignores directories.
 !/kitty/
