@@ -1,3 +1,36 @@
+local function read(path)
+	local f = io.open(path, "r")
+	if not f then
+		return nil
+	end
+	local s = f:read("*a")
+	f:close()
+	return vim.trim(s)
+end
+
+-- "dirname" or "dirname · program" when something is running on top of the shell
+local function label(term)
+	if not term.bufnr or not vim.api.nvim_buf_is_valid(term.bufnr) then
+		return
+	end
+	local pid = vim.b[term.bufnr].terminal_job_pid
+	if not pid then
+		return
+	end
+	local cwd = vim.uv.fs_readlink("/proc/" .. pid .. "/cwd")
+	local name = cwd and vim.fs.basename(cwd) or "term"
+	local child = (read("/proc/" .. pid .. "/task/" .. pid .. "/children") or ""):match("%d+")
+	local prog = child and read("/proc/" .. child .. "/comm")
+	return prog and (name .. " · " .. prog) or name
+end
+
+local function term_select()
+	for _, t in ipairs(require("toggleterm.terminal").get_all()) do
+		t.display_name = label(t) or t.display_name
+	end
+	vim.cmd("TermSelect")
+end
+
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
@@ -7,6 +40,7 @@ return {
 		{ "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "Float terminal" },
 		{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Horizontal terminal" },
 		{ "<leader>tv", "<cmd>ToggleTerm direction=vertical size=80<CR>", desc = "Vertical terminal" },
+		{ "<leader>ts", term_select, desc = "Select terminal" },
 	},
 	opts = {
 		open_mapping = [[<C-\>]],
