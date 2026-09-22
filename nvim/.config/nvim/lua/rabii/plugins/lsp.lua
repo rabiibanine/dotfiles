@@ -24,6 +24,7 @@ return {
 				"jsonls",
 				"eslint",
 				"clangd", -- c and c++
+				"marksman",
 			},
 			automatic_enable = true,
 		},

@@ -1,7 +1,7 @@
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
-	dependencies = { "williamboman/mason.nvim" },
+	dependencies = { "williamboman/mason.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	keys = {
 		{
 			"<leader>lf",
@@ -18,7 +18,6 @@ return {
 			ensure_installed = { "stylua", "prettierd", "clang-format" },
 		})
 	end,
-	dependencies = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
@@ -29,6 +28,7 @@ return {
 			typescriptreact = { "prettierd" },
 			html = { "prettierd" },
 			css = { "prettierd" },
+			markdown = { "prettierd" },
 			json = { "prettierd" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
