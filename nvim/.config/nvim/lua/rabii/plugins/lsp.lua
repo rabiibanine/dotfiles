@@ -51,6 +51,19 @@ return {
 				end,
 			})
 
+			vim.lsp.config("basedpyright", {
+				settings = {
+					python = {
+						analysis = {
+							diagnosticSeverityOverrides = {
+								reportUnknownParameterType = "none",
+								reportUnknownLambdaType = "none",
+							},
+						},
+					},
+				},
+			})
+
 			require("mason-lspconfig").setup(opts)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
