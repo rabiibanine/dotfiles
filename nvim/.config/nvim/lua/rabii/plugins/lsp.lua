@@ -53,10 +53,11 @@ return {
 
 			vim.lsp.config("basedpyright", {
 				settings = {
-					python = {
+					basedpyright = {
 						analysis = {
 							diagnosticSeverityOverrides = {
 								reportUnknownParameterType = "none",
+								reportMissingParameterType = "none",
 								reportUnknownLambdaType = "none",
 							},
 						},
