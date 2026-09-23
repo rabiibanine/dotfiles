@@ -45,3 +45,22 @@ opt.confirm = true
 -- Whitespace characters
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- WSL Clipboard
+
+if vim.fn.has("wsl") == 1 then
+	vim.g.clipboard = {
+		name = "WslClipboard",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+			["*"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+		},
+		cache_enabled = 0,
+	}
+end
+
+vim.opt.clipboard = "unnamedplus"
