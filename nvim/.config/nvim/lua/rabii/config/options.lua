@@ -37,7 +37,6 @@ opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
 -- Behavior
 opt.mouse = "a"
-opt.clipboard = "unnamedplus"
 opt.updatetime = 250
 opt.timeoutlen = 300 -- keep this snappy so jk/kj don't feel delayed
 opt.completeopt = { "menu", "menuone", "noselect" }
