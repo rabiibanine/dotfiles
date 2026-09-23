@@ -17,7 +17,7 @@ return {
 	{
 		"nvim-mini/mini.diff",
 		event = "VeryLazy",
-		opts = {},
+		opts = { view = { style = "sign" } },
 	},
 	{
 		"nvim-mini/mini.hipatterns",
