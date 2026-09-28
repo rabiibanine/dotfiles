@@ -2,7 +2,7 @@
 # Starship prompt
 # ─────────────────────────────────────
 eval "$(starship init zsh)"
-eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(mise activate zsh)"
 
 # ─────────────────────────────────────
 # Zsh Autosuggestions
