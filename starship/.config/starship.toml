@@ -1,0 +1,26 @@
+add_newline = true
+command_timeout = 500
+palette = "carbonfox"
+format = """$directory$git_branch$git_status$python$nodejs$rust$cmd_duration
+$character"""
+
+[palettes.carbonfox]
+blue = "#78a9ff"
+red = "#ee5396"
+green = "#25be6a"
+magenta = "#be95ff"
+muted = "#7b7c7e"
+
+[character]
+success_symbol = "[❯](blue)"
+error_symbol = "[❯](red)"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+
+[git_branch]
+style = "magenta"
+
+[cmd_duration]
+style = "muted"
