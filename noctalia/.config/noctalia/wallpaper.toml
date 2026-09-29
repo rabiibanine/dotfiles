@@ -1,0 +1,8 @@
+# ~/.config/noctalia/wallpaper.toml
+[wallpaper]
+enabled = true
+fill_mode = "crop"
+directory = "/home/pizzakat/projects/dotfiles/wallpapers/"
+
+[wallpaper.default]
+path = "/usr/share/backgrounds/wall.png"
