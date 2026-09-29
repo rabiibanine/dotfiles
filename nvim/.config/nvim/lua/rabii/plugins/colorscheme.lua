@@ -8,9 +8,14 @@ return {
 			require("catppuccin").setup({
 				flavour = "mocha",
 				transparent_background = true,
+
+				float = {
+					transparent = true,
+				},
 				integrations = {
 					lazy = true,
 					lualine = true,
+					mason = true,
 				},
 			})
 

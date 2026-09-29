@@ -71,6 +71,7 @@ return {
 			require("mason").setup({
 				ui = {
 					border = "rounded",
+					backdrop = "rounded",
 				},
 			})
 
