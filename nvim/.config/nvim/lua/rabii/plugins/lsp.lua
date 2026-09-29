@@ -68,6 +68,12 @@ return {
 				},
 			})
 
+			require("mason").setup({
+				ui = {
+					border = "rounded",
+				},
+			})
+
 			require("mason-lspconfig").setup(opts)
 
 			vim.api.nvim_create_autocmd("LspAttach", {

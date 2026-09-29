@@ -1,17 +1,20 @@
 return {
-	"EdenEast/nightfox.nvim",
-	lazy = false,
-	priority = 1000, -- load before everything else, it's the colorscheme
-	config = function()
-		require("nightfox").setup({
-			options = {
-				transparent = false,
-				styles = {
-					comments = "italic",
-					keywords = "bold",
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha",
+				transparent_background = true,
+				integrations = {
+					lazy = true,
+					lualine = true,
 				},
-			},
-		})
-		vim.cmd.colorscheme("carbonfox")
-	end,
+			})
+
+			vim.cmd.colorscheme("catppuccin-nvim")
+		end,
+	},
 }
