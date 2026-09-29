@@ -12,11 +12,6 @@ return {
 				float = {
 					transparent = true,
 				},
-				integrations = {
-					lazy = true,
-					lualine = true,
-					mason = true,
-				},
 			})
 
 			vim.cmd.colorscheme("catppuccin-nvim")
