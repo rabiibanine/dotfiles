@@ -1,0 +1,23 @@
+[shell.panel]
+transparency_mode = "glass"
+borders = true
+shadow = true
+
+[backdrop]
+enabled = true
+blur_intensity = 0.5
+tint_intensity = 0.2
+
+[bar.default]
+background_opacity = 0.82
+shadow = true
+
+[dock]
+background_opacity = 0.82
+shadow = true
+
+[notification]
+background_opacity = 0.82
+
+[osd]
+background_opacity = 0.82
