@@ -1,9 +1,4 @@
-// BEGIN_CUSTOM_USER_CONFIG
-screenshot-path "~/pictures/screenshots/screenshot from %Y-%m-%d %H-%M-%S.png"
-spawn-at-startup "waybar"
-spawn-sh-at-startup "swaybg -i ~/wallpapers/wallpaper-1.png"
-prefer-no-csd
-// END_CUSTOM_USER_CONFIG
+spawn-at-startup "noctalia"
 
 input {
     keyboard {
@@ -54,7 +49,8 @@ output "Virtual-1" {
 }
 
 layout {
-    gaps 4
+    background-color "transparent"
+    gaps 8
     center-focused-column "never"
     preset-column-widths {
         proportion 0.33333
@@ -80,24 +76,53 @@ layout {
     }
 }
 
+layer-rule {
+    match namespace="^noctalia-wallpaper$"
+    place-within-backdrop true
+    background-effect {
+	blur true
+   }
+}
+
+blur {
+    passes 3
+    offset 3.0
+    noise 0.02
+    saturation 1.5
+}
+
 hotkey-overlay {
     skip-at-startup
 }
 
 window-rule {
-    draw-border-with-background false
     geometry-corner-radius 8
     clip-to-geometry true
+}
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+window-rule {
+    match app-id="kitty"
+    draw-border-with-background false
 }
 
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+W hotkey-overlay-title="Open your favorite browser: helium" { spawn "helium-browser"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+T hotkey-overlay-title="Open a terminal: kitty" { spawn "kitty"; }
+    Mod+Z hotkey-overlay-title="Open your favorite browser: zen" { spawn "zen-browser"; }
+    Mod+Space hotkey-overlay-title="Run an application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+W hotkey-overlay-title="Change wallpaper" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+    Mod+A hotkey-overlay-title="Toggle control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+S hotkey-overlay-title="Toggle settings" { spawn-sh "noctalia msg settings-toggle"; }
+    Alt+Tab hotkey-overlay-title="Switch current window" { spawn-sh "noctalia msg window-switcher"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
