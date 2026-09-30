@@ -46,6 +46,9 @@ opt.confirm = true
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+-- Remove ~ characters
+opt.fillchars = { eob = " " }
+
 -- WSL Clipboard
 
 if vim.fn.has("wsl") == 1 then
