@@ -41,5 +41,19 @@ return {
 				["<space>"] = "none", -- don't let neo-tree swallow your leader key
 			},
 		},
+		event_handlers = {
+			{
+				event = "neo_tree_buffer_enter",
+				handler = function()
+					require("neo-tree.sources.manager").refresh("filesystem")
+				end,
+			},
+			{
+				event = "neo_tree_buffer_leave",
+				handler = function()
+					require("neo-tree.sources.manager").refresh("filesystem")
+				end,
+			},
+		},
 	},
 }
