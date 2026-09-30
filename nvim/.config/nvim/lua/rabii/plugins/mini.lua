@@ -11,7 +11,7 @@ return {
 	},
 	{
 		"nvim-mini/mini.pairs",
-		event = "InsertEnter",
+		event = "VeryLazy",
 		opts = {}, -- auto-closes (), [], {}, "", ''
 	},
 	{
