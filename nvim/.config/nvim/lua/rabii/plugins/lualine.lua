@@ -16,7 +16,7 @@ return {
 					separator = { left = "", right = "" },
 					right_padding = 2,
 					fmt = function(str)
-						return " " .. str
+						return "" .. " " .. str
 					end,
 				},
 			},
