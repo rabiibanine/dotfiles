@@ -5,7 +5,6 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = {
@@ -17,7 +16,7 @@ return {
 			sources = {
 				projects = {
 					projects = (function()
-						local dir = vim.fn.expand("~/Projects")
+						local dir = vim.fn.expand("~/projects")
 						local list = {}
 						local handle = (vim.uv or vim.loop).fs_scandir(dir)
 						if handle then
@@ -36,6 +35,7 @@ return {
 					confirm = function(picker, item)
 						picker:close()
 						local path = item.file or item.text
+						vim.cmd("%bd!")
 						vim.fn.chdir(path)
 						Snacks.picker.files({ cwd = path })
 					end,
@@ -50,6 +50,22 @@ return {
 		styles = {
 			notification = {
 				wo = { wrap = true }, -- Wrap notifications
+			},
+		},
+		dashboard = {
+			width = 72,
+			sections = {
+				{
+					section = "terminal",
+					cmd = "cat " .. vim.fn.stdpath("config") .. "/assets/header.ans; sleep .1",
+					ttl = 0,
+					height = 21, -- number of lines in your art
+					width = 72, -- visible columns of your art
+					padding = 1,
+					align = "center",
+				},
+				{ section = "keys", gap = 1, padding = 1 },
+				{ section = "startup" },
 			},
 		},
 	},
