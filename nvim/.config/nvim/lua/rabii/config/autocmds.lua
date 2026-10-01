@@ -39,3 +39,21 @@ autocmd("BufWritePre", {
 		vim.fn.winrestview(view)
 	end,
 })
+
+-- Soft wrap markdown files
+autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		-- Presentation settings
+		vim.opt_local.wrap = true -- Enable visual soft wrapping
+		vim.opt_local.linebreak = true -- Wrap at words, not in the middle of a word
+		vim.opt_local.breakindent = true -- Keep wrapped text aligned with list indent levels
+
+		-- Fixed movement keymaps for responsive wrapped navigation
+		local opts = { buffer = true }
+		vim.keymap.set("n", "j", "gj", opts)
+		vim.keymap.set("n", "k", "gk", opts)
+		vim.keymap.set("n", "0", "g0", opts)
+		vim.keymap.set("n", "$", "g$", opts)
+	end,
+})
