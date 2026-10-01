@@ -52,6 +52,12 @@ opt.fillchars = { eob = " " }
 -- WSL Clipboard
 
 if vim.fn.has("wsl") == 1 then
+	local paste = {
+		"powershell.exe",
+		"-NoProfile",
+		"-Command",
+		"[Console]::Out.Write((Get-Clipboard -Raw).Replace([string][char]13, [string]::Empty))",
+	}
 	vim.g.clipboard = {
 		name = "WslClipboard",
 		copy = {
@@ -59,11 +65,9 @@ if vim.fn.has("wsl") == 1 then
 			["*"] = "clip.exe",
 		},
 		paste = {
-			["+"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
-			["*"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))",
+			["+"] = paste,
+			["*"] = paste,
 		},
 		cache_enabled = 0,
 	}
 end
-
-vim.opt.clipboard = "unnamedplus"
