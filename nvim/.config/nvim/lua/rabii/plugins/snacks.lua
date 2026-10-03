@@ -61,10 +61,10 @@ return {
 					ttl = 0,
 					height = 21, -- number of lines in your art
 					width = 72, -- visible columns of your art
-					padding = 1,
+					padding = 2,
 					align = "center",
 				},
-				{ section = "keys", gap = 1, padding = 1 },
+				{ section = "keys", gap = 1, padding = 2 },
 				{ section = "startup" },
 			},
 		},
