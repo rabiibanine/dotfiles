@@ -84,7 +84,7 @@ fi
 # Only the packages every machine wants. keyd's config exists in the repo
 # too, but is only copied into place by install-laptop-extras.sh.
 cd "$DOTFILES"
-stow -t ~ zsh nvim kitty starship niri noctalia mise
+stow -t ~ zsh nvim kitty starship niri noctalia mise uv
 
 # --- 9. mise-managed toolchains --------------------------------------------------
 mise install

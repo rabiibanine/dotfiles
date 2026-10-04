@@ -42,7 +42,7 @@ if [ ! -d "$DOTFILES" ]; then
 fi
 
 cd "$DOTFILES"
-stow -t ~ zsh nvim starship mise
+stow -t ~ zsh nvim starship mise uv
 
 # --- 5. mise-managed toolchains ----------------------------------------------
 mise install
