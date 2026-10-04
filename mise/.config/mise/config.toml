@@ -1,7 +1,7 @@
 [tools]
-node = "lts"
-python = "latest"
-rust = "stable"
-java = "temurin-21"
-gradle = "latest"
-maven = "latest"
+node = "24.21.0"
+python = "3.14.8"
+rust = "1.99.0"
+java = "temurin-25"
+gradle = "9.8.0"
+maven = "3.10.0"
