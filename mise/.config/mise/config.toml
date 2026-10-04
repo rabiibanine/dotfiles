@@ -2,3 +2,6 @@
 node = "lts"
 python = "latest"
 rust = "stable"
+java = "temurin-21"
+gradle = "latest"
+maven = "latest"
