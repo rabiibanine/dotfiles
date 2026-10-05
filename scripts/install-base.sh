@@ -32,7 +32,7 @@ PACKAGES=(
   greetd
   kitty zsh zsh-syntax-highlighting zsh-autosuggestions starship stow
   ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
-  git curl wget unzip lazygit ripgrep fd fzf
+  git curl wget unzip lazygit ripgrep fd fzf btop
   neovim base-devel mise uv opencode
 )
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
@@ -56,8 +56,8 @@ if ! command -v yay &>/dev/null; then
   rm -rf "$BUILD_DIR"
 fi
 
-# --- 5. Install noctalia-greeter via yay -------------------------------------
-yay -S --noconfirm --needed noctalia-greeter
+# --- 5. Install noctalia-greeter and zen-browser via yay -------------------------------------
+yay -S --noconfirm --needed noctalia-greeter zen-browser
 
 # --- 6. greetd config ----------------------------------------------------------
 # Plain command — assumes real hardware, since that's the common case.
