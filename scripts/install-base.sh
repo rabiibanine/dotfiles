@@ -57,7 +57,7 @@ if ! command -v yay &>/dev/null; then
 fi
 
 # --- 5. Install noctalia-greeter and zen-browser via yay -------------------------------------
-yay -S --noconfirm --needed noctalia-greeter zen-browser
+yay -S --noconfirm --needed noctalia-greeter zen-browser-bin
 
 # --- 6. greetd config ----------------------------------------------------------
 # Plain command — assumes real hardware, since that's the common case.
