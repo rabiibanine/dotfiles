@@ -32,7 +32,7 @@ PACKAGES=(
   greetd
   kitty zsh zsh-syntax-highlighting zsh-autosuggestions starship stow
   ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
-  git curl wget unzip lazygit ripgrep fd fzf btop fastfetch
+  git curl wget unzip lazygit ripgrep fd fzf btop fastfetch less
   neovim base-devel mise uv opencode
 )
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
