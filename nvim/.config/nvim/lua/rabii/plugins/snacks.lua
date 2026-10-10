@@ -532,7 +532,40 @@ return {
 		{
 			"<leader>gg",
 			function()
-				Snacks.lazygit()
+				local Terminal = require("toggleterm.terminal").Terminal
+
+				local buf_path = vim.api.nvim_buf_get_name(0)
+				local start = buf_path ~= "" and vim.fs.dirname(buf_path) or vim.uv.cwd()
+				local root = vim.fs.root(start, ".git") or start
+
+				_G._lazygit_terms = _G._lazygit_terms or {}
+				_G._lazygit_next_id = _G._lazygit_next_id or 100
+
+				if not _G._lazygit_terms[root] then
+					_G._lazygit_next_id = _G._lazygit_next_id + 1
+					_G._lazygit_terms[root] = Terminal:new({
+						count = _G._lazygit_next_id, -- far from 1-9, so <N><C-\> never touches it
+						cmd = "lazygit",
+						dir = root,
+						direction = "float",
+						hidden = true,
+						close_on_exit = true,
+						on_open = function(term)
+							vim.cmd("startinsert!")
+							vim.keymap.set("t", "<C-\\>", function()
+								term:toggle()
+							end, { buffer = term.bufnr, desc = "Hide lazygit" })
+							-- lazygit uses j/k for navigation: send them instantly, no jk-escape delay
+							vim.keymap.set("t", "j", "j", { buffer = term.bufnr, nowait = true })
+							vim.keymap.set("t", "k", "k", { buffer = term.bufnr, nowait = true })
+						end,
+						on_exit = function()
+							_G._lazygit_terms[root] = nil
+						end,
+					})
+				end
+
+				_G._lazygit_terms[root]:toggle()
 			end,
 			desc = "Lazygit",
 		},
