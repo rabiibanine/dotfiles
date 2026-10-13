@@ -33,6 +33,7 @@ return {
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			java = { lsp_format = "prefer" },
+			xml = { lsp_format = "prefer" },
 		},
 		format_on_save = { timeout_ms = 500, lsp_fallback = true },
 	},

@@ -26,6 +26,7 @@ return {
 				"clangd", -- c and c++
 				"marksman",
 				"jdtls",
+				"lemminx",
 			},
 			automatic_enable = { exclude = { "jdtls" } },
 		},
