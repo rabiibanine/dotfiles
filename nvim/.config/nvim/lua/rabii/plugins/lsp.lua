@@ -25,8 +25,9 @@ return {
 				"eslint",
 				"clangd", -- c and c++
 				"marksman",
+				"jdtls",
 			},
-			automatic_enable = true,
+			automatic_enable = { exclude = { "jdtls" } },
 		},
 		config = function(_, opts)
 			vim.lsp.config("*", {
