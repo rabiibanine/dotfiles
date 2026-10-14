@@ -49,6 +49,7 @@ output "Virtual-1" {
 }
 
 layout {
+    // Transparent so the wallpaper / overview backdrop shows through at all times.
     background-color "transparent"
     gaps 8
     center-focused-column "never"
@@ -67,8 +68,8 @@ layout {
     }
 
     shadow {
-	on
-	softness 30
+        on
+        softness 30
         spread 5
         offset x=0 y=5
         draw-behind-window true
@@ -76,20 +77,48 @@ layout {
     }
 }
 
+// Overview: the regular wallpaper (noctalia-wallpaper) stays on the normal
+// background layer and zooms out together with the workspaces. Noctalia's
+// separate "backdrop" surface (a blurred + tinted copy of the wallpaper) is
+// what goes into the overview backdrop, i.e. the area OUTSIDE the workspaces.
+// Requires `[backdrop] enabled = true` in Noctalia's config.
+// Verify the namespace with: niri msg layers
 layer-rule {
-    match namespace="^noctalia-wallpaper$"
+    match namespace="^noctalia-backdrop"
     place-within-backdrop true
-    background-effect {
-	blur true
-   }
 }
 
+overview {
+    // The workspace shadows look odd over a blurred backdrop with transparent workspaces.
+    workspace-shadow { off; }
+}
+
+// Global blur parameters (used by every background-effect { blur true } below).
 blur {
     passes 3
     offset 3.0
     noise 0.02
     saturation 1.5
 }
+
+// Blur behind Noctalia's bar, panels, dock, notifications and OSD.
+// Noctalia requests the blur regions itself; xray false makes the blur
+// include windows behind them rather than only the wallpaper.
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+
+// Blur behind windows (useful for transparent windows such as kitty at 0.95 opacity).
+// Uncomment if you want it:
+// window-rule {
+//     background-effect {
+//         blur true
+//         xray false
+//     }
+// }
 
 hotkey-overlay {
     skip-at-startup
