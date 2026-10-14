@@ -3,6 +3,11 @@ spawn-at-startup "noctalia"
 input {
     keyboard {
         xkb {
+            // Replace "us,ca" with your comma-separated language codes (e.g., "us,fr" or "us,ir")
+            layout "us,ca"
+
+            // Set the shortcut to switch between layouts (e.g., Super + Space or Caps Lock)
+            options "grp:win_space_toggle"
         }
         numlock
     }
@@ -147,9 +152,9 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a terminal: kitty" { spawn "kitty"; }
     Mod+Z hotkey-overlay-title="Open your favorite browser: zen" { spawn "zen-browser"; }
-    Mod+Space hotkey-overlay-title="Run an application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+A hotkey-overlay-title="Run an application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+W hotkey-overlay-title="Change wallpaper" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
-    Mod+A hotkey-overlay-title="Toggle control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+X hotkey-overlay-title="Toggle control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
     Mod+S hotkey-overlay-title="Toggle settings" { spawn-sh "noctalia msg settings-toggle"; }
     Alt+Tab hotkey-overlay-title="Switch current window" { spawn-sh "noctalia msg window-switcher"; }
 
