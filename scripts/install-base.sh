@@ -44,7 +44,7 @@ sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 DOTFILES="$HOME/projects/dotfiles"
 if [ ! -d "$DOTFILES" ]; then
   echo "!! $DOTFILES not found. Clone your dotfiles repo there first:"
-  echo "     git clone <your-repo-url> $DOTFILES"
+  echo "     git clone git@github.com:rabiibanine/dotfiles.git $DOTFILES"
   echo "   then re-run this script."
   exit 1
 fi
