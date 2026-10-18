@@ -42,11 +42,20 @@ sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 
 # --- 3. Dotfiles must exist before stow/mise below -----------------------
 DOTFILES="$HOME/projects/dotfiles"
+DOTFILES_REPO="git@github.com:rabiibanine/dotfiles.git"
 if [ ! -d "$DOTFILES" ]; then
-  echo "!! $DOTFILES not found. Clone your dotfiles repo there first:"
-  echo "     git clone git@github.com:rabiibanine/dotfiles.git $DOTFILES"
-  echo "   then re-run this script."
-  exit 1
+  echo "==> $DOTFILES not found, cloning $DOTFILES_REPO ..."
+  mkdir -p "$(dirname "$DOTFILES")"
+  # accept-new: trusts github.com's host key on first connect instead of
+  # stopping at an interactive prompt (still refuses a CHANGED key).
+  if ! GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" \
+       git clone "$DOTFILES_REPO" "$DOTFILES"; then
+    echo "!! Clone failed. Over SSH this usually means this machine has no SSH key"
+    echo "   registered with GitHub yet (or no network). Fix that, or clone it by hand:"
+    echo "     git clone $DOTFILES_REPO $DOTFILES"
+    echo "   then re-run this script."
+    exit 1
+  fi
 fi
 
 # --- 4. Login shell -----------------------------------------------------------
@@ -83,7 +92,8 @@ fi
 
 echo "==> Base setup done."
 if [ "$IS_WSL" = true ]; then
-  echo "    WSL needs nothing else."
+  echo "    WSL needs nothing else. Optional: install-docker.sh (containers/databases)."
 else
   echo "    Next: install-gui.sh, then the matching install-*-extras.sh, then reboot."
+  echo "    Optional anywhere: install-docker.sh (containers/databases)."
 fi
