@@ -19,7 +19,7 @@ sudo pacman -Syu --noconfirm
 # mise/uv/opencode: language version management + AI coding agent.
 PACKAGES=(
   zsh zsh-syntax-highlighting zsh-autosuggestions starship stow
-  git curl wget unzip lazygit ripgrep fd fzf
+  git curl wget unzip lazygit ripgrep fd fzf tree-sitter-cli less
   neovim base-devel
   mise uv opencode
 )
