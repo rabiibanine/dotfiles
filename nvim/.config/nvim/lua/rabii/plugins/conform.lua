@@ -15,7 +15,7 @@ return {
 		-- installs the formatter binaries themselves (ruff is already pulled
 		-- in as an LSP server above, no need to duplicate it here)
 		require("mason-tool-installer").setup({
-			ensure_installed = { "stylua", "prettierd", "clang-format" },
+			ensure_installed = { "stylua", "prettierd", "clang-format", "sql-formatter" },
 		})
 	end,
 	opts = {
@@ -34,6 +34,10 @@ return {
 			cpp = { "clang-format" },
 			java = { lsp_format = "prefer" },
 			xml = { lsp_format = "prefer" },
+			sql = { "sql-formatter" },
+		},
+		formatters = {
+			["sql-formatter"] = { prepend_args = { "-l", "plsql" } },
 		},
 		format_on_save = { timeout_ms = 500, lsp_fallback = true },
 	},
