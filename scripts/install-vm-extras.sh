@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# VM-only extras — run after install-base.sh, VMware VM only.
+# VM-only extras -- run after install-base.sh and install-gui.sh, VMware VM only.
 # Safe to re-run.
 set -euo pipefail
 
@@ -11,21 +11,21 @@ sudo systemctl enable --now vmtoolsd vmware-vmblock-fuse
 
 # --- 2. greetd GPU workaround ---------------------------------------------------
 # noctalia-greeter's bundled compositor can't get a working GPU path inside
-# this VM and dies silently on boot — LIBGL_ALWAYS_SOFTWARE=1 forces software
+# this VM and dies silently on boot -- LIBGL_ALWAYS_SOFTWARE=1 forces software
 # rendering, scoped to just the greeter process (confirmed it does not carry
-# over into the real niri session). Overwrites the plain command install-base.sh
+# over into the real niri session). Overwrites the plain command install-gui.sh
 # wrote, since greetd only has the one config file.
-sudo tee /etc/greetd/config.toml > /dev/null <<EOF
+sudo tee /etc/greetd/config.toml > /dev/null <<EOF2
 [terminal]
 vt = 1
 
 [default_session]
 command = "env LIBGL_ALWAYS_SOFTWARE=1 /usr/bin/noctalia-greeter-session"
 user = "greeter"
-EOF
+EOF2
 
 echo "==> VM extras done. Reboot, log in through the greeter, confirm niri +"
 echo "    Noctalia look right."
 echo "    Then: Settings -> Shell -> Security -> Noctalia Greeter -> Sync Now"
-echo "    (pushes your real wallpaper/palette to the login screen — this is a"
+echo "    (pushes your real wallpaper/palette to the login screen -- this is a"
 echo "     GUI action and a polkit-gated one-time password prompt, can't be scripted)"
