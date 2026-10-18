@@ -1,0 +1,45 @@
+# Local databases. Start only what you need with profiles:
+#   docker compose --profile postgres up -d
+#   docker compose --profile oracle up -d
+# (or use the `db` zsh helper). Passwords come from ./.env (see .env.example).
+name: databases
+
+services:
+  postgres:
+    image: postgres:17            # pinned major version; change deliberately
+    profiles: [postgres]
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"     # localhost only, not exposed to the network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init/postgres:/docker-entrypoint-initdb.d:ro   # *.sql / *.sh, first start only
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  oracle:
+    image: gvenzl/oracle-free:slim
+    profiles: [oracle]
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:?set ORACLE_PASSWORD in .env}   # SYS/SYSTEM/PDBADMIN
+      APP_USER: ${ORACLE_APP_USER:-appuser}                              # normal user in FREEPDB1
+      APP_USER_PASSWORD: ${ORACLE_APP_USER_PASSWORD:?set ORACLE_APP_USER_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:1521:1521"
+    volumes:
+      - oradata:/opt/oracle/oradata
+      - ./init/oracle:/container-entrypoint-initdb.d:ro  # *.sql / *.sh, first start only
+    shm_size: 1g
+    # The image ships its own healthcheck; `docker compose ps` shows "healthy"
+    # once the database is ready (first start takes a few minutes).
+
+volumes:
+  pgdata:
+  oradata:
