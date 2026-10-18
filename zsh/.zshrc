@@ -14,3 +14,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # IMPORTANT: keep this near the end
 # ─────────────────────────────────────
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ─────────────────────────────────────
+# Zsh Exports
+# ─────────────────────────────────────
+export PATH="$HOME/.local/bin:$PATH"
