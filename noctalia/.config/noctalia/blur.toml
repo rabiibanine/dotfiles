@@ -17,6 +17,7 @@ background_opacity = 0.82
 shadow = true
 
 [notification]
+border_width = 0.5
 background_opacity = 0.82
 
 [osd]
