@@ -34,10 +34,10 @@ return {
 			cpp = { "clang-format" },
 			java = { lsp_format = "prefer" },
 			xml = { lsp_format = "prefer" },
-			sql = { "sql-formatter" },
+			sql = { "sql_formatter" },
 		},
 		formatters = {
-			["sql-formatter"] = { prepend_args = { "-l", "plsql" } },
+			sql_formatter = { prepend_args = { "-l", "plsql" } },
 		},
 		format_on_save = { timeout_ms = 500, lsp_fallback = true },
 	},
