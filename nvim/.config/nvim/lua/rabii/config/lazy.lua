@@ -22,6 +22,12 @@ require("lazy").setup({
 		border = "rounded",
 		backdrop = 100,
 	},
+	git = {
+		-- Automatically prunes dead remote branches inside plugin repos
+		prune = true,
+		-- Increases timeout length to prevent half-finished fetches during poor connection
+		timeout = 120,
+	},
 	checker = { enabled = true, notify = false },
 	change_detection = { notify = false },
 })
